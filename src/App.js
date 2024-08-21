@@ -1,6 +1,7 @@
 import Button from "./Button";
 import styles from "./App.module.css";
 import { useEffect, useState } from "react";
+import { func } from "prop-types";
 
 function App() {
   const [counter, setValue] = useState(0);
@@ -34,4 +35,33 @@ function App() {
   );
 }
 
-export default App;
+function Hello() {
+  // function destroyedFn() {
+  //   console.log("Bye!!!");
+  // }
+  // function effectFn() {
+  //   console.log("Created!!!");
+  //   return destroyedFn;
+  // }
+  useEffect(function () {
+    console.log("Created!!!");
+    return function () {
+      console.log("Bye!!!!");
+    };
+  }, []);
+  return <h1>Hello</h1>;
+}
+
+function App2() {
+  const [showing, setShowing] = useState(false);
+  const onClick = () => setShowing((prev) => !prev);
+  return (
+    <div>
+      {showing ? <Hello /> : null}
+
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+    </div>
+  );
+}
+
+export default App2;
