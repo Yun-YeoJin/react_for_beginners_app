@@ -12,8 +12,8 @@ function App() {
     if (toDo === "") {
       return;
     }
-    setTodo("");
     setTodos((currentArray) => [toDo, ...currentArray]); //... : 배열의 요소 가져오기
+    setTodo("");
   };
   console.log(toDos);
   return (
@@ -28,8 +28,11 @@ function App() {
         />
         <button>Add To Do</button>
       </form>
+      <hr />
+      {toDos.map((item, index) => (
+        <li key={index}>{item}</li> //List 형식
+      ))}
     </div>
   );
 }
-
 export default App;
